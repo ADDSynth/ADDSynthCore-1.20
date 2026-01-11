@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "addsynthcore:bronze_trophy",
+    "addsynthcore:silver_trophy",
+    "addsynthcore:gold_trophy",
+    "addsynthcore:platinum_trophy"
+  ]
+}

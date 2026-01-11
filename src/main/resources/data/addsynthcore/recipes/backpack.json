@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "l l",
+    "lll",
+    "lll"
+  ],
+  "key": {
+    "l": {
+      "tag": "forge:leather"
+    }
+  },
+  "result": {
+    "item": "addsynthcore:backpack"
+  }
+}

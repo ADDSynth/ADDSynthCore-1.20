@@ -1,0 +1,19 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "addsynthcore:item/seashells/cowrie"
+  },
+  "display": {
+    "ground": {
+      "translation": [0, 3, 0],
+      "scale": [0.25, 0.25, 0.5]
+    },
+    "gui": {
+      "scale": [0.75, 0.75, 1]
+    },
+    "fixed": {
+      "rotation": [0, 180, 0],
+      "scale": [0.75, 0.75, 1]
+    }
+  }
+}

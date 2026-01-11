@@ -1,0 +1,29 @@
+
+Version 1.0 - TBD
+NEW:
+  Added Auto Jukebox.
+    Can hold up to 27 Music Discs. Plays them in order or shuffled. Can also play Music Discs from other mods.
+  Added simple Backpacks:
+    Holds up to 27 items, and of course, you cannot insert a Backpack into another Backpack. Use Anvil to rename.
+  Added Personal Beacon:
+    Requires Curios. Place in Charm slot to apply Glowing Effect, allowing other players to see you through walls.
+  Added Watering Can:
+    Right-click water to fill. Up to 64 uses. Use to bonemeal things and also hydrates sponge.
+  Added Hedge Trimmers:
+    Left-click any simple plant that breaks in one hit and this will destroy all plants in a large radius.
+  // Added Iron Shield.
+   - TODO: A new shield is too complicated to implement right now.
+  Added Seashells.
+  Added the /addsynthcore map_colors Command. Spawns blocks of each MapColor at the highest point in the world.
+   - Another command meant to help developers.
+  Added more mods to detect if "Print Mod Detection Results" is turned on in the config:
+   - Now detects GregTech CEu Modern, Architectury, FastWorkbench, EvilCraft, Common Capabilities,
+     Oh My Gourd, Xaero's World Map, Xaero's Minimap, GunpowderLib, Chance Cubes, GraveStone Mod,
+     TrashSlot, Steve's Carts, Configure, AppleSkin, Bookshelf, Portal Gun Mod, and Bad Packets.
+CHANGED:
+  Removed the top ingredient in Trophy crafting recipes so all trophies now only require 5 of their
+    main ingredient instead of 6.
+
+
+
+For older version history, please see Overpowered Technology changelog BEFORE version 6.

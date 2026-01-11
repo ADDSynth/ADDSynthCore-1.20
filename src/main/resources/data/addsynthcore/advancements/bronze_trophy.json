@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "addsynthcore:bronze_trophy"
+    },
+    "title": {
+      "translate": "advancements.addsynthcore.bronze_trophy.title"
+    },
+    "description": {
+      "translate": "advancements.addsynthcore.bronze_trophy.description"
+    },
+    "frame": "goal"
+  },
+  "parent": "addsynthcore:root",
+  "criteria": {
+    "bronze_trophy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "addsynthcore:bronze_trophy"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "addsynthcore:bronze_trophy"
+    }
+  ]
+}

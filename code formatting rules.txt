@@ -1,0 +1,104 @@
+Source Code formatting rules for ADDSynth's projects.
+
+We prefer the source code be formatted in a certain way, but we're not strict about it.
+We won't decline or turn away pull requests if they do not follow these format rules.
+I'll probably just reformat it myself later in the future anyway.
+
+
+1. We use spaces, not tabs. An indent is 2 spaces.
+
+2. All blocks statements must have brackets, even one line 'if' statements. We often need
+   to move lines of code from place to place, and it is very convenient to go to the
+   start of the line and hold SHIFT and press DOWN to select the whole line,
+   then use the common keyboard cut and paste commands.
+
+3. Keep code safe. Most variable declarations are explicitly initalized to some value.
+   I understand that putting everything in a 'try/catch' block is not always convenient,
+   but at the very least you should report errors to the log if an error does occur.
+   And above all, THE GAME SHOULD NEVER CRASH.
+
+   Use the '@Override' and '@Nonnull' and '@Nullable' attributes if the overridden method
+   also uses them.
+
+   The minor loss of performance for extra null checks are usually worth it. You don't lose
+   as much performance as you think!
+
+4. Keep code simple and easy to understand.
+
+   4a. Initalize variables one line at a time. We prefer this partly because of the same reason
+       above, where sometimes the variable needs to be changed or moved. For instance:
+
+    Please do:
+
+    int x = 0;  
+    int y = 0;  
+    int width = 0;  
+    int height = 0;  
+    int space = 0;
+
+    NOT
+
+    int x, y, width, height, space = 0;
+
+  4b. If you're going to use a variable inside a loop, initalize the variable outside the loop,
+      so that you can reuse it. Example:
+
+     int i;  
+     int id; // gets assigned before use, so it's okay to leave it uninitialized  
+     for(i = 0; i < array.length; i++){  
+       id = getID(array[i]);  
+     }
+
+    NOT
+
+     for(int i = 0; i < array.length; i++){  
+       int id = getID(array[i]);  
+     }
+
+  4c. Use long variable names! I actually consider this to be very important.
+     Source code is meant to be read by humans, so it should be easy to understand. Compilers
+     don't care how long your variable names are so make sure it is descriptive enough.
+
+     int x_position;  
+     int number_of_lasers;  
+     String message;
+
+    NOT
+
+     int x_pos;  
+     int num_lasers;  
+     String msg;
+
+  4d. Function arguments should have a space in between them. 
+
+  4e. Although, in most languages, declaring a field without an access modifier is implicitly
+     defined as being private to that class, we still prefer you type out the private keyword.
+
+  4f. Using conditional statements is fine as long as they're simple enough. So for instance
+     'return tile != null ? tile.getSomething() : null' is perfectly fine. But if your conditional
+     statement gets any more complicated than that, or consists of multiple embedded conditional
+     statements, it may be better to use embedded if statements instead, or even a dedicated function.
+
+  4g. Also, I often like to space out lines of code so that they line up with each other. This is
+     not as important as some of the other rules. But in regards to this, I've noticed that the
+     lists often become misaligned because I used a Refactor command to change the name of something
+     which I then discover later messes up the alignment of a list somewhere.
+
+5. Variables should be in lowercase underscore style, but when it comes to methods I'm
+   guilty of using both camelCase and lowercase underscore, so whatever.
+
+6. Specifically applies to Java:
+   Yes, I frequently add the keyword 'final' to method declarations and arguments. This was back
+   when I was learning Java, and they said adding 'final' would be a minor optimization because
+   it signals to the compiler that the method/argument never changes, so it doesn't need to check
+   that itself. In practice this is extremely insignificant. You do not need to follow my
+   lead in this case. It's also been unhelpful once or twice because I had to remove the 'final'
+   keyword so I could override a method.
+
+7. Specifically applies to Java:
+   Never had to use Access Transformers to do Java bytecode manipulation.
+   But if all it does is allow access to vanilla fields and methods that are private, I prefer
+   to use Reflection for that. But in order to use Reflection you need to know the SRG name of
+   the field or method you want, because fields and method names are obfuscated outside a
+   dev environment and are translated to be easier to read inside a dev environment.
+

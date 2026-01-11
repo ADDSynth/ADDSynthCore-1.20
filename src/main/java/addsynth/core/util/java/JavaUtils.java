@@ -1,0 +1,136 @@
+package addsynth.core.util.java;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import addsynth.core.ADDSynthCore;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+
+public final class JavaUtils {
+
+  public static final int cast_to_int(final long value){
+    if(value > 0){ return value > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)value; }
+    if(value < 0){ return value < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int)value; }
+    return 0;
+  }
+
+  /**
+   * <p>Use this to attempt to use Reflection to gain access to a private or protected method in another class.
+   * <p><b>Note:</b> for performance reasons, only call this ONCE and cache the result.
+   * <p><b>Remember:</b> If the obfuscated name you supply doesn't find the method, it may be under a different codename!
+   * @param clazz the class that contains the method you want to access.
+   * @param srg_name  the Searge obfsucated name of the method.
+   * @param parameterTypes list of parameter types of the method.
+   * @return the method, or null if an error occured.
+   */
+  @Nullable
+  public static final Method getMethod(Class<?> clazz, String srg_name, Class<?> ... parameterTypes){
+    Method m = null;
+    try{
+      m = ObfuscationReflectionHelper.findMethod(clazz, srg_name, parameterTypes);
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
+    return m;
+  }
+
+  public static final boolean classExists(final String clazz){
+    try{
+      Class.forName(clazz, false, JavaUtils.class.getClassLoader());
+    }
+    catch(ClassNotFoundException e){
+      return false;
+    }
+    return true;
+  }
+
+  /** This converts a list of random objects to a list of class types. */
+  public static final Class[] getTypes(@Nonnull final Object[] args){
+    final Class[] arg_types = new Class[args.length];
+    int i;
+    for(i = 0; i < args.length; i++){
+      arg_types[i] = args[i].getClass();
+    }
+    return arg_types;
+  }
+
+  /** Attempt to invoke a constructor of the supplied class, using the supplied arguments. */
+  public static final <T> T InvokeConstructor(@Nonnull final Class<T> clazz, final Object ... args){
+    T obj = null;
+    try{
+      obj = clazz.getConstructor(getTypes(args)).newInstance(args);
+    }
+    catch(NoSuchMethodException e){
+      ADDSynthCore.log.error(e.toString());
+      ADDSynthCore.log.error("JavaUtils.InvokeConstructor() failed to find a constructor in the '"+clazz.getName()+"' class that takes the arguments: "+StringUtil.print_type_array(getTypes(args)));
+      // even if no constructors are specified in the class, there will always be the default constructor.
+      ADDSynthCore.log.error("Available constructors for "+clazz.getSimpleName()+": "+print_constructor_list(clazz.getConstructors()));
+      Thread.dumpStack();
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
+    return obj;
+  }
+
+  public static final String print_parameters(final Class[] parameters){
+    if(parameters.length == 0){
+      return "";
+    }
+    int i;
+    final StringBuilder s = new StringBuilder();
+    Class c;
+    for(i = 0; i < parameters.length; i++){
+      c = parameters[i];
+      s.append(c.getSimpleName());
+      if(i + 1 < parameters.length){
+        s.append(", ");
+      }
+    }
+    return s.toString();
+  }
+
+  public static final String print_constructor_list(final Constructor[] constructors){
+    int i;
+    final String name = constructors[0].getDeclaringClass().getSimpleName();
+    final StringBuilder constructor_list = new StringBuilder();
+    for(i = 0; i < constructors.length; i++){
+      constructor_list.append(Modifier.toString(constructors[i].getModifiers()));
+      constructor_list.append(" ");
+      constructor_list.append(name);
+      constructor_list.append("(");
+      constructor_list.append(print_parameters(constructors[i].getParameterTypes()));
+      constructor_list.append(")");
+      if(i + 1 < constructors.length){
+        constructor_list.append(", ");
+      }
+    }
+    return constructor_list.toString();
+  }
+
+  /** Prints to the ADDSynthCore log all methods in a class, one method per line.
+   *  This is useful when I had to use an SRG name of a method, but the class had multiple
+   *  methods with the name, so I had to print them all out and select the one that matched
+   *  the one I was looking for.
+   * @param clazz
+   */
+  public static final void print_class_methods(final Class clazz){
+    ADDSynthCore.log.info("Debug: Begin printing all methods for class "+clazz.getSimpleName()+".");
+    StringBuilder method_string;
+    final Method[] methods = clazz.getDeclaredMethods();
+    for(final Method method : methods){
+      method_string = new StringBuilder();
+      method_string.append(Modifier.toString(method.getModifiers()));
+      method_string.append(" ");
+      method_string.append(method.getName());
+      method_string.append("(");
+      method_string.append(print_parameters(method.getParameterTypes()));
+      method_string.append(")");
+      ADDSynthCore.log.info(method_string.toString());
+    }
+  }
+
+}

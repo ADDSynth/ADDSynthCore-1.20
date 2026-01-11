@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "addsynthcore:item/seashells/sand_dollar"
+  },
+  "display": {
+    "fixed": {
+      "scale": [0.75, 0.75, 1]
+    }
+  }
+}
