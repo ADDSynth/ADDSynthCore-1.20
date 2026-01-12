@@ -11,8 +11,6 @@ NEW:
     Right-click water to fill. Up to 64 uses. Use to bonemeal things and also hydrates sponge.
   Added Hedge Trimmers:
     Left-click any simple plant that breaks in one hit and this will destroy all plants in a large radius.
-  // Added Iron Shield.
-   - TODO: A new shield is too complicated to implement right now.
   Added Seashells.
   Added the /addsynthcore map_colors Command. Spawns blocks of each MapColor at the highest point in the world.
    - Another command meant to help developers.
