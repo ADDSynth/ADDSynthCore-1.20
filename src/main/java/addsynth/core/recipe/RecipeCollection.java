@@ -34,8 +34,8 @@ import net.minecraftforge.server.ServerLifecycleHooks;
  *  needs an item in that slot. The recipe cache and item filter are
  *  automatically updated whenever resources are reloaded.
  *  @see FurnaceRecipes
- *  @see addsynth.energy.gameplay.machines.compressor.recipe.CompressorRecipes
- *  @see addsynth.energy.gameplay.machines.circuit_fabricator.recipe.CircuitFabricatorRecipes
+ *  @see <a href="https://github.com/ADDSynth/ADDSynth-Energy-1.20/blob/main/src/main/java/addsynth/energy/gameplay/machines/compressor/recipe/CompressorRecipes.java">CompressorRecipes</a>
+ *  @see <a href="https://github.com/ADDSynth/ADDSynth-Energy-1.20/blob/main/src/main/java/addsynth/energy/gameplay/machines/circuit_fabricator/recipe/CircuitFabricatorRecipes.java">CircuitFabricatorRecipes</a>
  *  @see <a href="https://github.com/ADDSynth/Overpowered-Technology-1.20/blob/1.20/src/main/java/addsynth/overpoweredtechnology/machines/magic_infuser/recipes/MagicInfuserRecipes.java">MagicInfuserRecipes</a>
  */
 public class RecipeCollection<T extends Recipe<Container>> {

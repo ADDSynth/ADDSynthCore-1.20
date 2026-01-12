@@ -230,8 +230,8 @@ import net.minecraft.world.level.block.state.BlockState;
  * changes the world during its Block Network update, and it does not need to detect when blocks next to it
  * has changed.
  *
- * @see EnergyNetwork
- * @see SolarPanelNetwork
+ * @see <a href="https://github.com/ADDSynth/ADDSynth-Energy-1.20/blob/main/src/main/java/addsynth/energy/lib/energy_network/EnergyNetwork.java">EnergyNetwork</a>
+ * @see <a href="https://github.com/ADDSynth/ADDSynth-Energy-1.20/blob/main/src/main/java/addsynth/energy/gameplay/machines/solar_panel/SolarPanelNetwork.java">SolarPanelNetwork</a>
  * @see <a href="https://github.com/ADDSynth/Overpowered-Technology-1.20/blob/1.20/src/main/java/addsynth/overpoweredtechnology/machines/data_cable/DataCableNetwork.java">DataCableNetwork</a>
  * @see <a href="https://github.com/ADDSynth/Overpowered-Technology-1.20/blob/1.20/src/main/java/addsynth/overpoweredtechnology/machines/laser/machine/LaserNetwork.java">LaserNetwork</a>
  * @see <a href="https://github.com/ADDSynth/Overpowered-Technology-1.20/blob/1.20/src/main/java/addsynth/overpoweredtechnology/machines/suspension_bridge/BridgeNetwork.java">BridgeNetwork</a>
