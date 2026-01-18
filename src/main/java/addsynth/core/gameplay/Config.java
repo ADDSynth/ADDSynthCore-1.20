@@ -1,5 +1,6 @@
 package addsynth.core.gameplay;
 
+import addsynth.core.block_network.DebugBlockNetwork;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class Config {
@@ -20,6 +21,9 @@ public final class Config {
   public static ForgeConfigSpec.BooleanValue dump_structure_tags;
   public static ForgeConfigSpec.BooleanValue dump_banner_pattern_tags;
   public static ForgeConfigSpec.BooleanValue dump_painting_variant_tags;
+
+  public static ForgeConfigSpec.BooleanValue debug_block_networks;
+  public static ForgeConfigSpec.EnumValue<DebugBlockNetwork.DEBUG_LEVEL> block_network_debug_level;
 
   // Music Box
   public static ForgeConfigSpec.BooleanValue enable_left_hand;
@@ -53,6 +57,10 @@ public final class Config {
     builder.push("Debug");
       debug_mod_detection = builder.define("Print Mod Detection Results", false);
       dump_map_colors     = builder.define("Dump Map Colors", false);
+      builder.push("Block Networks");
+        debug_block_networks = builder.define("Print Debug Messages to Log", false);
+        block_network_debug_level = builder.defineEnum("Debug Level", DebugBlockNetwork.DEBUG_LEVEL.Debug);
+      builder.pop();
       builder.push("Dump Tags");
                    dump_block_tags = builder.define("Dump Block Tags", false);
                     dump_item_tags = builder.define("Dump Item Tags", false);
