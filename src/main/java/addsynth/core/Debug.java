@@ -86,10 +86,9 @@ public final class Debug {
     if(Config.dump_biome_tags.get()){
       printTags("biome_tags.txt",            "Biome",               registry.registry(Registries.BIOME));
     }
-    // if(Config.dump_enchantment_tags.get()){
-    // FUTURE: Enchantment Tags aren't until Minecraft 1.20.x
-    //   printTags("enchantment_tags.txt",      "Enchantment",         BuiltInRegistries.ENCHANTMENT);
-    // }
+    if(Config.dump_enchantment_tags.get()){
+      printTags("enchantment_tags.txt",      "Enchantment",         BuiltInRegistries.ENCHANTMENT);
+    }
     if(Config.dump_damage_type_tags.get()){
       printTags("damage_type_tags.txt",      "Damage Type",         registry.registry(Registries.DAMAGE_TYPE));
     }

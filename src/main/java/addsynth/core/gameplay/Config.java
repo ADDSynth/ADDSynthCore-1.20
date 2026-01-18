@@ -13,7 +13,7 @@ public final class Config {
   public static ForgeConfigSpec.BooleanValue dump_item_tags;
   public static ForgeConfigSpec.BooleanValue dump_entity_tags;
   public static ForgeConfigSpec.BooleanValue dump_biome_tags;
-  // public static ForgeConfigSpec.BooleanValue dump_enchantment_tags;
+  public static ForgeConfigSpec.BooleanValue dump_enchantment_tags;
   public static ForgeConfigSpec.BooleanValue dump_damage_type_tags;
   public static ForgeConfigSpec.BooleanValue dump_game_event_tags;
   public static ForgeConfigSpec.BooleanValue dump_fluid_tags;
@@ -66,7 +66,7 @@ public final class Config {
                     dump_item_tags = builder.define("Dump Item Tags", false);
                   dump_entity_tags = builder.define("Dump Entity Tags", false);
                    dump_biome_tags = builder.define("Dump Biome Tags", false);
-        //     dump_enchantment_tags = builder.define("Dump Enchantment Tags", false);
+             dump_enchantment_tags = builder.define("Dump Enchantment Tags", false);
              dump_damage_type_tags = builder.define("Dump Damage Types Tags", false);
               dump_game_event_tags = builder.define("Dump Game Event Tags", false);
                    dump_fluid_tags = builder.define("Dump Fluid Tags", false);
