@@ -10,6 +10,7 @@ import net.minecraft.stats.Stats;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.commons.lang3.tuple.Pair;
 
 public final class Game {
@@ -40,11 +41,12 @@ public final class Game {
    * @param <C>
    * @param context
    * @param config_constructor
-   * @param mod_name
+   * @param folder_name
    * @param filename
    */
-  public static final <C> void registerConfig(ModLoadingContext context, Function<ForgeConfigSpec.Builder, C> config_constructor, String mod_name, String filename){
-    registerConfig(context, ModConfig.Type.COMMON, config_constructor, mod_name+File.separator+filename);
+  public static final <C> void registerConfig(ModLoadingContext context, Function<ForgeConfigSpec.Builder, C> config_constructor, String folder_name, String filename){
+    new File(FMLPaths.CONFIGDIR.get().toString(), folder_name).mkdir();
+    registerConfig(context, ModConfig.Type.COMMON, config_constructor, folder_name+File.separator+filename);
   }
 
   /** <p>Recommend you use this to register your config classes now.
@@ -80,11 +82,12 @@ public final class Game {
    * @param context
    * @param type
    * @param config_constructor
-   * @param mod_name
+   * @param folder_name
    * @param filename
    */
-  public static final <C> void registerConfig(ModLoadingContext context, ModConfig.Type type, Function<ForgeConfigSpec.Builder, C> config_constructor, String mod_name, String filename){
-    registerConfig(context, type, config_constructor, mod_name+File.separator+filename);
+  public static final <C> void registerConfig(ModLoadingContext context, ModConfig.Type type, Function<ForgeConfigSpec.Builder, C> config_constructor, String folder_name, String filename){
+    new File(FMLPaths.CONFIGDIR.get().toString(), folder_name).mkdir();
+    registerConfig(context, type, config_constructor, folder_name+File.separator+filename);
   }
 
   /** @see Stats#makeCustomStat(String, StatFormatter) */

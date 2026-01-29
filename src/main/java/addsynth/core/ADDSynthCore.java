@@ -1,6 +1,5 @@
 package addsynth.core;
 
-import java.io.File;
 import addsynth.core.compat.Compatibility;
 import addsynth.core.compat.EMCValue;
 import addsynth.core.gameplay.Config;
@@ -28,7 +27,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -66,7 +64,6 @@ public final class ADDSynthCore {
   }
 
   private static final void init_config(final ModLoadingContext context){
-    new File(FMLPaths.CONFIGDIR.get().toString(), NAME).mkdir();
     Game.registerConfig(context, Config::new, NAME, "main.toml");
   }
 
