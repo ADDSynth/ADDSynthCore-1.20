@@ -3,7 +3,6 @@ package addsynth.core.util.player;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 import addsynth.core.ADDSynthCore;
-import addsynth.core.game.item.ItemUtil;
 import addsynth.core.util.math.block.BlockMath;
 import addsynth.core.util.server.ServerUtils;
 import net.minecraft.core.BlockPos;
@@ -16,6 +15,11 @@ import net.minecraft.world.level.Level;
 
 public final class PlayerUtil {
 
+  /** This will attempt to add the ItemStack to the player's inventory.<br>
+   *  If it can't, the item is dropped in the world.
+   * @param player
+   * @param stack
+   */
   public static final void add_to_player_inventory(final Player player, final ItemStack stack){
     if(player.getInventory().add(stack) == false){
       player.drop(stack, false);
@@ -61,11 +65,8 @@ public final class PlayerUtil {
   }
 
   public static final boolean isPlayerHoldingItem(final Player player, final Item item){
-    final ItemStack stack = player.getMainHandItem();
-    if(ItemUtil.itemStackExists(stack)){
-      return stack.getItem() == item;
-    }
-    return false;
+    final ItemStack stack = player.getInventory().getSelected();
+    return stack.getItem() == item;
   }
 
   /** Gets the {@link ServerPlayer} using the player's name.

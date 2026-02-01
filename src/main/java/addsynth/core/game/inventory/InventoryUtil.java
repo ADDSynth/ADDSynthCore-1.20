@@ -3,6 +3,7 @@ package addsynth.core.game.inventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
@@ -11,59 +12,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
 
 public final class InventoryUtil {
-
-  /**
-   * Attempts to transfer the entire contents of the Input Slot to the Output Slot.<br>
-   * Returns true if anything changed.
-   * @param input_inventory
-   * @param input_slot
-   * @param output_inventory
-   * @param output_slot
-   * @return
-   */
-  public static final boolean transfer(CommonInventory input_inventory, int input_slot, CommonInventory output_inventory, int output_slot){
-    if(input_inventory == output_inventory && input_slot == output_slot){
-      return false;
-    }
-    ItemStack itemstack = input_inventory.getStackInSlot(input_slot);
-    final int count = itemstack.getCount();
-    if(itemstack.isEmpty()){
-      return false;
-    }
-    itemstack = output_inventory.insertItem(output_slot, itemstack, false);
-    input_inventory.setStackInSlot(input_slot, itemstack);
-    return itemstack.getCount() != count;
-  }
-
-  /**
-   * Attempts to transfer the specified amount of items from the Input Slot to the Output Slot.<br>
-   * The items will NOT transfer if the amount specified do not fit in the output slot.<br>
-   * Returns true if a transfer occured.
-   * @param input_inventory
-   * @param input_slot
-   * @param output_inventory
-   * @param output_slot
-   * @param count
-   * @return
-   */
-  public static final boolean transfer(CommonInventory input_inventory, int input_slot, CommonInventory output_inventory, int output_slot, int count){
-    if(count == 0){
-      return false;
-    }
-    if(input_inventory == output_inventory && input_slot == output_slot){
-      return false;
-    }
-    final ItemStack itemstack = input_inventory.extractItem(input_slot, count, true);
-    if(itemstack.isEmpty()){
-      return false;
-    }
-    if(output_inventory.can_add(output_slot, itemstack)){
-      output_inventory.add(output_slot, itemstack);
-      input_inventory.getStackInSlot(input_slot).shrink(itemstack.getCount());
-      return true;
-    }
-    return false;
-  }
 
   /** <p>Used to safely return the Inventory Capability. Use this if your inventory allows bi-directional
    *  transfer of items because we return the inventory regardless of which side we're checking from.<br />
@@ -123,6 +71,126 @@ public final class InventoryUtil {
         inventory.drop_in_world(world, pos);
       }
     }
+  }
+
+  /** Transfers as many items as possible from the inventory into the player's inventory.
+   * @param from
+   * @param player_inventory
+   */
+  public static final void transfer(CommonInventory from, Inventory player_inventory){
+    int i;
+    final int slots = from.getSlots();
+    ItemStack stack;
+    for(i = 0; i < slots; i++){
+      stack = from.getStackInSlot(i);
+      if(!stack.isEmpty()){
+        player_inventory.add(stack); // automatically deducts count from ItemStack.
+      }
+    }
+  }
+
+  /**
+   * Attempts to transfers items from the player's inventory to the output inventory.<br>
+   * Will transfer items from the inventory, hotbar, and offhand slot.
+   * @param player_inventory
+   * @param output
+   */
+  public static final void transfer(Inventory player_inventory, CommonInventory output){
+    int x, y;
+    final int max = player_inventory.items.size();
+    final int slots = output.getSlots();
+    ItemStack stack;
+    for(y = 0; y < max; y++){
+      stack = player_inventory.items.get(y);
+      if(!stack.isEmpty()){
+        for(x = 0; x < slots && !stack.isEmpty(); x++){
+          stack = output.insertItem(x, stack, false);
+        }
+        player_inventory.items.set(y, stack);
+      }
+    }
+    // offhand slot
+    stack = player_inventory.offhand.get(0);
+    if(!stack.isEmpty()){
+      for(x = 0; x < slots && !stack.isEmpty(); x++){
+        stack = output.insertItem(x, stack, false);
+      }
+      player_inventory.offhand.set(0, stack);
+    }
+  }
+
+  /**
+   * Attempts to transfer the entire contents of the inventory to the output inventory.
+   * @param from
+   * @param to
+   */
+  public static final void transfer(CommonInventory from, CommonInventory to){
+    int x, y;
+    final int maxX = to.getSlots();
+    final int maxY = from.getSlots();
+    ItemStack stack;
+    for(y = 0; y < maxY; y++){
+      stack = from.getStackInSlot(y);
+      if(!stack.isEmpty()){
+        for(x = 0; x < maxX && !stack.isEmpty(); x++){
+          stack = to.insertItem(x, stack, false);
+        }
+        from.setStackInSlot(y, stack);
+      }
+    }
+  }
+
+  /**
+   * Attempts to transfer the entire ItemStack from the Source Slot to the Destination Slot.<br>
+   * Returns true if anything changed.
+   * @param from_inventory
+   * @param from_slot
+   * @param to_inventory
+   * @param to_slot
+   * @return true if anything changed.
+   */
+  public static final boolean transfer(CommonInventory from_inventory, int from_slot, CommonInventory to_inventory, int to_slot){
+    if(from_inventory == to_inventory && from_slot == to_slot){
+      return false;
+    }
+    ItemStack itemstack = from_inventory.getStackInSlot(from_slot);
+    if(itemstack.isEmpty()){
+      return false;
+    }
+    final int count = itemstack.getCount();
+    itemstack = to_inventory.insertItem(to_slot, itemstack, false);
+    from_inventory.setStackInSlot(from_slot, itemstack);
+    return itemstack.getCount() != count;
+  }
+
+  /**
+   * Attempts to transfer the specified amount of items from the Source Slot to the Destination Slot.<br>
+   * The items will NOT transfer if the amount specified does not fit in the destination slot.<br>
+   * Returns true if a transfer occured.
+   * @param from_inventory
+   * @param from_slot
+   * @param to_inventory
+   * @param to_slot
+   * @param count
+   * @return true if a transfer occured.
+   */
+  public static final boolean transfer(CommonInventory from_inventory, int from_slot, CommonInventory to_inventory, int to_slot, int count){
+    if(count == 0){
+      return false;
+    }
+    if(from_inventory == to_inventory && from_slot == to_slot){
+      return false;
+    }
+    final ItemStack itemstack = from_inventory.extractItem(from_slot, count, true);
+    if(itemstack.isEmpty()){
+      return false;
+    }
+    if(to_inventory.can_add(to_slot, itemstack)){
+      to_inventory.add(to_slot, itemstack);
+      from_inventory.getStackInSlot(from_slot).shrink(itemstack.getCount());
+      return true;
+    }
+    return false;
   }
 
   /** This returns the {@link ItemStackHandler} converted to an Inventory. However, the contents

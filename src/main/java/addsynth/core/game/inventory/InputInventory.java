@@ -73,8 +73,8 @@ public final class InputInventory extends CommonInventory {
 
   @Override
   public final boolean isItemValid(final int slot, final @NotNull ItemStack stack){
-    if(isItemStackValid.apply(slot, stack)){
-      return is_valid_slot(slot);
+    if(is_valid_slot(slot)){
+      return isItemStackValid.apply(slot, stack);
     }
     return false;
   }
