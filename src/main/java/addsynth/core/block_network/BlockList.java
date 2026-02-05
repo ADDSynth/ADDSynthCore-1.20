@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import javax.annotation.Nullable;
 import addsynth.core.block_network.node.BlockEntityNode;
 import addsynth.core.block_network.search.IBlockSearchAlgorithm;
-import addsynth.core.util.java.ArrayUtil;
+import addsynth.core.util.java.list.IndexedSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -15,14 +15,32 @@ import net.minecraft.world.level.block.entity.BlockEntity;
  *  consists of. It is only meant to be used with blockNetworks. */
 public final class BlockList<T extends BlockEntity & IBlockNetworkUser> {
 
-  private final ArrayList<T> list;
+  private final IndexedSet<T> list;
+  /** <p>Although the only practical thing we need to do is record the size of the list
+   *  before update, so we can print a debug message to log if it changed. The quickest
+   *  and easiest way to keep the tile list synchronized is to clear it and then add
+   *  each tile one by one, however this will change the {@code first_tile} if the update
+   *  occurred somewhere else. The only known consequence of this is that there's a small
+   *  chance the Block Network won't update for that tick (becuase the new {@code first_tile}
+   *  was already ticked before update.) It is unclear if there are any more consequences of
+   *  NOT keeping the tile list in order each time it is updated.
+   *  <p>To avoid potential future issues, we have decided to preserve the block list order
+   *  between updates. But this means we must use two lists, and iterate through the list
+   *  twice instead of once, however we use HashSets so this should keep time complexity
+   *  to O(n). It also makes intuitive sense. If a Block Network updates, you just want
+   *  to remove tiles that don't exist anymore, and add new tiles to the back of the list.
+   *  You also DO NOT want {@code first_tile} to be reassigned if it still exists!
+   */
+  private final HashSet<T> temp;
 
   public BlockList(){
-    list = new ArrayList<>(100);
+    list = new IndexedSet<>(100);
+    temp = new HashSet<>(100);
   }
 
   public BlockList(final int size){
-    list = new ArrayList<>(size);
+    list = new IndexedSet<>(size);
+    temp = new HashSet<>(size);
   }
 
   @Nullable
@@ -30,13 +48,12 @@ public final class BlockList<T extends BlockEntity & IBlockNetworkUser> {
     if(list.size() == 0){
       return null;
     }
-    return list.get(0);
+    return list.getFirst();
   }
-      
 
   public final boolean isFirstTile(final BlockEntity tile){
     if(list.size() > 0){
-      return list.get(0) == tile;
+      return list.getFirst() == tile;
     }
     return false;
   }
@@ -49,20 +66,23 @@ public final class BlockList<T extends BlockEntity & IBlockNetworkUser> {
     final HashSet<BlockEntityNode> found = search_algorithm.find_blocks(from, world, custom_search);
   
     // extract tiles
-    final ArrayList<T> tiles = new ArrayList<>(100);
+    final int oldSize = list.size();
+    temp.clear(); // we still need to extract all tiles in the update so we can remove tiles if they don't exist.
+    T tile;
     for(final BlockEntityNode node : found){
-      final T tile = (T)node.getTile();
+      tile = (T)node.getTile();
       // set BlockNetwork
       tile.setBlockNetwork(network);
-      tiles.add(tile);
+      list.add(tile); // go ahead and add new tiles in the same loop. This will fail if they already exist.
+      temp.add(tile);
     }
 
     // sync list
-    DebugBlockNetwork.BLOCKS_CHANGED(network, list.size(), tiles.size());
-    ArrayUtil.syncList(list, tiles);
+    list.removeIf((T tile2) -> !temp.contains(tile2));
+    DebugBlockNetwork.BLOCKS_CHANGED(network, oldSize, list.size());
   }
 
-  public final void remove(final BlockEntity tile){
+  public final void remove(final T tile){
     list.remove(tile);
   }
 
@@ -76,11 +96,11 @@ public final class BlockList<T extends BlockEntity & IBlockNetworkUser> {
     return positions;
   }
 
-  public final ArrayList<BlockEntity> getTileEntities(){
-    return new ArrayList<>(list);
+  public final ArrayList<T> getTileEntities(){
+    return list.toList();
   }
 
-  public final boolean contains(final BlockEntity tile){
+  public final boolean contains(final T tile){
     return list.contains(tile);
   }
 
@@ -94,7 +114,7 @@ public final class BlockList<T extends BlockEntity & IBlockNetworkUser> {
   }
 
   public final void remove_invalid(){
-    list.removeIf((BlockEntity tile) -> tile.isRemoved());
+    list.removeIf((T tile) -> tile.isRemoved());
   }
 
   public final void forAllTileEntities(final Consumer<T> action){

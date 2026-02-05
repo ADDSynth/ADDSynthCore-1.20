@@ -48,20 +48,12 @@ public class IndexedSet<T> implements Iterable<T> /*, Collection<T>*/ {
     return set.contains(value);
   }
 
-  public int getIndexOf(T value){
-    return list.indexOf(value);
-  }
-
-  public T get(int index){
-    return list.get(index);
-  }
-
   public void clear(){
     list.clear();
     set.clear();
   }
 
-  public int size() {
+  public int size(){
       return list.size();
   }
 
@@ -71,6 +63,26 @@ public class IndexedSet<T> implements Iterable<T> /*, Collection<T>*/ {
 
   public boolean validIndex(int index){
     return index >= 0 && index < list.size();
+  }
+
+  // ------------------------------------------------------------
+  // Get operations
+  // ------------------------------------------------------------
+
+  public int getIndexOf(T value){
+    return list.indexOf(value);
+  }
+
+  public T get(int index){
+    return list.get(index);
+  }
+
+  public T getFirst(){
+    return list.get(0);
+  }
+
+  public T getLast(){
+    return list.get(list.size() - 1);
   }
 
   // ------------------------------------------------------------
@@ -183,11 +195,11 @@ public class IndexedSet<T> implements Iterable<T> /*, Collection<T>*/ {
     return list.toArray(a);
   }
 
-  public List<T> toList(){
+  public ArrayList<T> toList(){
     return new ArrayList<>(list);
   }
 
-  public Set<T> toSet(){
+  public HashSet<T> toSet(){
     return new HashSet<>(set);
   }
 
@@ -211,6 +223,10 @@ public class IndexedSet<T> implements Iterable<T> /*, Collection<T>*/ {
 
   public void sort(Comparator<? super T> comparator){
     list.sort(comparator);
+  }
+
+  public void swap(int indexA, int indexB){
+    Collections.swap(list, indexA, indexB);
   }
 
   @Override
