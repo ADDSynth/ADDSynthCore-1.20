@@ -1,19 +1,65 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "p p",
-    "ppp",
-    " s "
-  ],
-  "key": {
-    "p": {
-      "tag": "forge:plates/silver"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:plates/silver"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "s s",
+          "sss",
+          " b "
+        ],
+        "key": {
+          "s": {
+            "tag": "forge:plates/silver"
+          },
+          "b": {
+            "item": "addsynthcore:trophy_base"
+          }
+        },
+        "result": {
+          "item": "addsynthcore:silver_trophy"
+        }
+      }
     },
-    "s": {
-      "item": "addsynthcore:trophy_base"
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/silver"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "s s",
+          "sss",
+          " b "
+        ],
+        "key": {
+          "s": {
+            "tag": "forge:ingots/silver"
+          },
+          "b": {
+            "item": "addsynthcore:trophy_base"
+          }
+        },
+        "result": {
+          "item": "addsynthcore:silver_trophy"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "addsynthcore:silver_trophy"
-  }
+  ]
 }

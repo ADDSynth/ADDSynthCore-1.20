@@ -1,19 +1,65 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "p p",
-    "ppp",
-    " s "
-  ],
-  "key": {
-    "p": {
-      "tag": "forge:plates/bronze"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:plates/bronze"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "b b",
+          "bbb",
+          " s "
+        ],
+        "key": {
+          "b": {
+            "tag": "forge:plates/bronze"
+          },
+          "s": {
+            "item": "addsynthcore:trophy_base"
+          }
+        },
+        "result": {
+          "item": "addsynthcore:bronze_trophy"
+        }
+      }
     },
-    "s": {
-      "item": "addsynthcore:trophy_base"
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/bronze"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "b b",
+          "bbb",
+          " s "
+        ],
+        "key": {
+          "b": {
+            "tag": "forge:ingots/bronze"
+          },
+          "s": {
+            "item": "addsynthcore:trophy_base"
+          }
+        },
+        "result": {
+          "item": "addsynthcore:bronze_trophy"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "addsynthcore:bronze_trophy"
-  }
+  ]
 }
