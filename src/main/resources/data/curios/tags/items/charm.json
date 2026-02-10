@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "addsynthcore:personal_beacon"
+    {
+      "id": "addsynthcore:personal_beacon",
+      "required": false
+    }
   ]
 }

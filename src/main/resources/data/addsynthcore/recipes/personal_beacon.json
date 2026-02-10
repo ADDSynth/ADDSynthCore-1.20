@@ -1,19 +1,32 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " g ",
-    "gcg",
-    " g "
-  ],
-  "key": {
-    "g": {
-      "tag": "forge:dusts/glowstone"
-    },
-    "c": {
-      "item": "minecraft:compass"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:item_exists",
+          "item": "addsynthcore:personal_beacon"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          " g ",
+          "gcg",
+          " g "
+        ],
+        "key": {
+          "g": {
+            "tag": "forge:dusts/glowstone"
+          },
+          "c": {
+            "item": "minecraft:compass"
+          }
+        },
+        "result": {
+          "item": "addsynthcore:personal_beacon"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "addsynthcore:personal_beacon"
-  }
+  ]
 }
