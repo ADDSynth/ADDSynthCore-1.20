@@ -35,7 +35,6 @@ public final class CreativeTab {
         output.accept(Core.watering_can.get());
         output.accept(Core.hedge_trimmers.get());
         // output.accept(Core.iron_shield.get());
-        output.accept(Trophy.trophy_base.get());
         output.accept(Trophy.bronze.get());
         output.accept(Trophy.silver.get());
         output.accept(Trophy.gold.get());

@@ -11,18 +11,6 @@
         ]
       }
     },
-    "trophy_base": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "addsynthcore:trophy_base"
-            ]
-          }
-        ]
-      }
-    },
     "has_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -45,7 +33,6 @@
   "requirements": [
     [
       "bronze_plate",
-      "trophy_base",
       "has_recipe",
       "has_bronze_trophy"
     ]

@@ -66,7 +66,6 @@ public final class CoreRegister {
       registry.register(Names.WATERING_CAN,    new WateringCan());
       registry.register(Names.HEDGE_TRIMMERS,  new HedgeTrimmers());
       // registry.register(Names.IRON_SHIELD,     new IronShield());
-      registry.register(Names.TROPHY_BASE,     new Item(new Item.Properties()));
       RegistryUtil.register(registry, Trophy.bronze);
       RegistryUtil.register(registry, Trophy.silver);
       RegistryUtil.register(registry, Trophy.gold);

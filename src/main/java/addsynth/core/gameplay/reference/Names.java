@@ -17,7 +17,6 @@ public final class Names {
   public static final ResourceLocation HEDGE_TRIMMERS  = ADDSynthCore.getLocation("hedge_trimmers");
   public static final ResourceLocation IRON_SHIELD     = ADDSynthCore.getLocation("iron_shield");
 
-  public static final ResourceLocation TROPHY_BASE     = ADDSynthCore.getLocation("trophy_base");
   public static final ResourceLocation BRONZE_TROPHY   = ADDSynthCore.getLocation("bronze_trophy");
   public static final ResourceLocation SILVER_TROPHY   = ADDSynthCore.getLocation("silver_trophy");
   public static final ResourceLocation GOLD_TROPHY     = ADDSynthCore.getLocation("gold_trophy");
