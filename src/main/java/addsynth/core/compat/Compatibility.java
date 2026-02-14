@@ -53,7 +53,7 @@ public final class Compatibility {
   public static final CompatInfo ADDSYNTH_ENERGY =
     new CompatInfo("ADDSynth Energy",                    "addsynth_energy",      ModType.Tech);
 
-  public static final CompatInfo ADDSYNTH_MATERIALS = // currently bundled with ADDSynthCore, so it will always be loaded.
+  public static final CompatInfo ADDSYNTH_MATERIALS =
     new CompatInfo("ADDSynth Materials",                 "addsynth_materials",   ModType.Materials);
 
   public static final CompatInfo APPLESKIN =
