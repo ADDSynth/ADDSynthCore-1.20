@@ -21,6 +21,7 @@ NEW:
 CHANGED:
   Removed the top ingredient in Trophy crafting recipes so all trophies now only require 5 of their
     main ingredient instead of 6.
+  Debug configuration settings have been moved to their own configuration file.
 REMOVED:
   Removed Trophy Base item.
 

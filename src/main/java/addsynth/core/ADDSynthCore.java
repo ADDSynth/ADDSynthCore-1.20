@@ -2,12 +2,12 @@ package addsynth.core;
 
 import addsynth.core.compat.Compatibility;
 import addsynth.core.compat.EMCValue;
-import addsynth.core.gameplay.Config;
 import addsynth.core.gameplay.NetworkHandler;
 import addsynth.core.gameplay.blocks.jukebox.JukeboxPlayerGui;
 import addsynth.core.gameplay.blocks.team_manager.data.CriteriaData;
 import addsynth.core.gameplay.blocks.team_manager.data.TeamData;
 import addsynth.core.gameplay.commands.ADDSynthCommands;
+import addsynth.core.gameplay.config.*;
 import addsynth.core.gameplay.items.backpack.BackpackGui;
 import addsynth.core.gameplay.registers.Containers;
 import addsynth.core.recipe.FurnaceRecipes;
@@ -64,7 +64,8 @@ public final class ADDSynthCore {
   }
 
   private static final void init_config(final ModLoadingContext context){
-    Game.registerConfig(context, Config::new, NAME, "main.toml");
+    Game.registerConfig(context,        Config::new, NAME, "main.toml");
+    Game.registerConfig(context, DebugSettings::new, NAME, "Debug.toml");
   }
 
   private static final void main_setup(final FMLCommonSetupEvent event){
@@ -72,7 +73,7 @@ public final class ADDSynthCore {
     CommonUtil.displayModInfo(log, NAME, "ADDSynth", VERSION, DEV_STAGE, VERSION_DATE);
   
     Debug.debug();
-    if(Config.debug_mod_detection.get()){
+    if(DebugSettings.debug_mod_detection.get()){
       event.enqueueWork(Compatibility::debug);
     }
     NetworkHandler.registerMessages();

@@ -1,10 +1,10 @@
 package addsynth.core.gameplay.blocks.music_box.gui;
 
 import org.lwjgl.glfw.GLFW;
-import addsynth.core.gameplay.Config;
 import addsynth.core.gameplay.NetworkHandler;
 import addsynth.core.gameplay.blocks.music_box.TileMusicBox;
 import addsynth.core.gameplay.blocks.music_box.network_messages.NoteMessage;
+import addsynth.core.gameplay.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;

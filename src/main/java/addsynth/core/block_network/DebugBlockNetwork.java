@@ -1,7 +1,7 @@
 package addsynth.core.block_network;
 
 import addsynth.core.ADDSynthCore;
-import addsynth.core.gameplay.Config;
+import addsynth.core.gameplay.config.DebugSettings;
 import addsynth.core.util.java.StringUtil;
 import net.minecraft.core.BlockPos;
 
@@ -75,8 +75,8 @@ public final class DebugBlockNetwork {
   }
 
   private static final void debug(final String string){
-    if(Config.debug_block_networks.get()){
-      switch(Config.block_network_debug_level.get()){
+    if(DebugSettings.debug_block_networks.get()){
+      switch(DebugSettings.block_network_debug_level.get()){
       case Info:  ADDSynthCore.log.info(string);  break;
       case Debug: ADDSynthCore.log.debug(string); break;
       case Trace: ADDSynthCore.log.trace(string); break;

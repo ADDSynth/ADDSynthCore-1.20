@@ -1,12 +1,12 @@
 package addsynth.core.gameplay.blocks.team_manager.gui;
 
-import addsynth.core.gameplay.Config;
 import addsynth.core.gameplay.NetworkHandler;
 import addsynth.core.gameplay.blocks.team_manager.data.CriteriaData;
 import addsynth.core.gameplay.blocks.team_manager.data.CriteriaType;
 import addsynth.core.gameplay.blocks.team_manager.data.ObjectiveDataUnit;
 import addsynth.core.gameplay.blocks.team_manager.data.TeamData;
 import addsynth.core.gameplay.blocks.team_manager.network_messages.TeamManagerCommand;
+import addsynth.core.gameplay.config.Config;
 import addsynth.core.gameplay.reference.GuiReference;
 import addsynth.core.gui.GuiBase;
 import addsynth.core.gui.section.MutableGuiSection;

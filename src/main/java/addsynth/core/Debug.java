@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import addsynth.core.gameplay.Config;
+import addsynth.core.gameplay.config.DebugSettings;
 import addsynth.core.util.color.ColorUtil;
 import addsynth.core.util.java.FileUtil;
 import addsynth.core.util.java.StringUtil;
@@ -66,7 +66,7 @@ public final class Debug {
   }
 
   public static final void debug(){
-    if(Config.dump_map_colors.get()){
+    if(DebugSettings.dump_map_colors.get()){
       ColorUtil.dump_map_colors();
     }
   }
@@ -74,41 +74,41 @@ public final class Debug {
   // This must be run when tags are done being loaded.
   @SuppressWarnings("deprecation")
   public static final void dump_tags(final RegistryAccess registry){
-    if(Config.dump_block_tags.get()){
+    if(DebugSettings.dump_block_tags.get()){
       printTags("block_tags.txt",            "Block",               BuiltInRegistries.BLOCK);
     }
-    if(Config.dump_item_tags.get()){
+    if(DebugSettings.dump_item_tags.get()){
       printTags("item_tags.txt",             "Item",                BuiltInRegistries.ITEM);
     }
-    if(Config.dump_entity_tags.get()){
+    if(DebugSettings.dump_entity_tags.get()){
       printTags("entity_tags.txt",           "Entity",              BuiltInRegistries.ENTITY_TYPE);
     }
-    if(Config.dump_biome_tags.get()){
+    if(DebugSettings.dump_biome_tags.get()){
       printTags("biome_tags.txt",            "Biome",               registry.registry(Registries.BIOME));
     }
-    if(Config.dump_enchantment_tags.get()){
+    if(DebugSettings.dump_enchantment_tags.get()){
       printTags("enchantment_tags.txt",      "Enchantment",         BuiltInRegistries.ENCHANTMENT);
     }
-    if(Config.dump_damage_type_tags.get()){
+    if(DebugSettings.dump_damage_type_tags.get()){
       printTags("damage_type_tags.txt",      "Damage Type",         registry.registry(Registries.DAMAGE_TYPE));
     }
-    if(Config.dump_game_event_tags.get()){
+    if(DebugSettings.dump_game_event_tags.get()){
       printTags("game_event_tags.txt",       "Game Event",          BuiltInRegistries.GAME_EVENT);
     }
-    if(Config.dump_fluid_tags.get()){
+    if(DebugSettings.dump_fluid_tags.get()){
       printTags("fluid_tags.txt",            "Fluid",               BuiltInRegistries.FLUID);
     }
-    if(Config.dump_poi_tags.get()){
+    if(DebugSettings.dump_poi_tags.get()){
       printTags("poi_tags.txt",              "Points of Interest",  BuiltInRegistries.POINT_OF_INTEREST_TYPE);
     }
-    if(Config.dump_structure_tags.get()){
+    if(DebugSettings.dump_structure_tags.get()){
       // Dump Structure Tags isn't working
       printTags("structure_tags.txt",        "Structure",           registry.registry(Registries.STRUCTURE));
     }
-    if(Config.dump_banner_pattern_tags.get()){
+    if(DebugSettings.dump_banner_pattern_tags.get()){
       printTags("banner_pattern_tags.txt",   "Banner Pattern",      BuiltInRegistries.BANNER_PATTERN);
     }
-    if(Config.dump_painting_variant_tags.get()){
+    if(DebugSettings.dump_painting_variant_tags.get()){
       printTags("painting_variant_tags.txt", "Painting Variant",    BuiltInRegistries.PAINTING_VARIANT);
     }
   }

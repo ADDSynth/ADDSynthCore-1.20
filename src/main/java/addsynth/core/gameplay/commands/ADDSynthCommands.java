@@ -1,7 +1,7 @@
 package addsynth.core.gameplay.commands;
 
 import addsynth.core.ADDSynthCore;
-import addsynth.core.gameplay.Config;
+import addsynth.core.gameplay.config.Config;
 import addsynth.core.util.debug.DebugUtil;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandBuildContext;

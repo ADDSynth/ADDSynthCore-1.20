@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import addsynth.core.ADDSynthCore;
-import addsynth.core.gameplay.Config;
+import addsynth.core.gameplay.config.Config;
 import addsynth.core.util.game.data.CombinedNameComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.resources.ResourceKey;
