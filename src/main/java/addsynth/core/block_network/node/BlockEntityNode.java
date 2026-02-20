@@ -1,7 +1,10 @@
 package addsynth.core.block_network.node;
 
+import java.util.Objects;
 import javax.annotation.Nonnull;
 import addsynth.core.util.java.StringUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 /** This is a Node that MUST have a TileEntity at that location.
@@ -10,7 +13,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 public class BlockEntityNode<T extends BlockEntity> extends AbstractNode<T> {
 
   public BlockEntityNode(@Nonnull final T tile){
-    super(tile);
+    super(Objects.requireNonNull(tile, "BlockEntity used for BlockEntityNode must not be null!"));
+  }
+
+  BlockEntityNode(BlockPos position, Block block, T tile){
+    super(position, block, Objects.requireNonNull(tile, "BlockEntity used for BlockEntityNode must not be null!"));
   }
 
   @Override
@@ -19,6 +26,11 @@ public class BlockEntityNode<T extends BlockEntity> extends AbstractNode<T> {
       return true;
     }
     return tile.isRemoved() || !tile.getBlockPos().equals(position) || tile.getBlockState().getBlock() != block;
+  }
+
+  @Override
+  public boolean hasTileEntity(){
+    return true;
   }
 
   @Override

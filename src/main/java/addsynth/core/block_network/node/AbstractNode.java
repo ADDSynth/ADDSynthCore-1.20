@@ -39,6 +39,10 @@ public abstract class AbstractNode<T extends BlockEntity> {
     return false;
   }
 
+  public boolean hasTileEntity(){
+    return tile != null;
+  }
+
   @Nullable
   public T getTile(){
     return tile;
@@ -59,7 +63,7 @@ public abstract class AbstractNode<T extends BlockEntity> {
 
   @Override
   public boolean equals(final Object obj){
-    return obj instanceof Node ? position.equals(((Node)obj).position) : false;
+    return obj instanceof AbstractNode ? position.equals(((AbstractNode)obj).position) : false;
   }
 
 }

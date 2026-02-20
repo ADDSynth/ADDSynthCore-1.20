@@ -86,14 +86,14 @@ public final class StandardBlockSearch implements IBlockSearchAlgorithm {
   }
 
   private final boolean check(BlockPos position, HashSet<BlockEntityNode> list, ServerLevel world, CustomSearch consumer){
+    final Node node = new Node(position, world);
     if(consumer != null){
-      consumer.accept(null, new Node(position, world), world);
+      consumer.accept(null, node, world);
     }
-    final BlockEntity tile = world.getBlockEntity(position);
-    if(tile != null){
-      final BlockEntityNode node = new BlockEntityNode<>(tile);
-      if(isValid.test(node)){
-        list.add(node);
+    if(node.hasTileEntity()){
+      final BlockEntityNode block_node = node.toBlockEntityNode();
+      if(isValid.test(block_node)){
+        list.add(block_node);
         return true;
       }
     }

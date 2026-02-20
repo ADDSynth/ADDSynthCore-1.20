@@ -60,7 +60,6 @@ public final class AdvancedSearchAlgorithm implements IBlockSearchAlgorithm {
     final HashSet<BlockEntityNode> list = new HashSet<>(100);
     try{
       searched.clear();
-      searched.add(from);
       final BlockEntityNode node = check(null, from, list, world, consumer);
       if(node != null){
         search(node, list, world, consumer);
@@ -78,12 +77,12 @@ public final class AdvancedSearchAlgorithm implements IBlockSearchAlgorithm {
 
   private final void search(BlockEntityNode from, HashSet<BlockEntityNode> list, ServerLevel world, CustomSearch consumer){
     final BlockPos previous_position = from.position;
+    searched.add(previous_position);
     BlockPos position;
     BlockEntityNode node;
     for(final Direction side : Direction.values()){
       position = previous_position.relative(side);
       if(searched.contains(position) == false){
-        searched.add(position);
         node = check(from, position, list, world, consumer);
         if(node != null){
           search(node, list, world, consumer);
@@ -94,15 +93,15 @@ public final class AdvancedSearchAlgorithm implements IBlockSearchAlgorithm {
 
   @Nullable
   private final BlockEntityNode check(@Nullable BlockEntityNode from, BlockPos position, HashSet<BlockEntityNode> list, ServerLevel world, CustomSearch consumer){
+    final Node node = new Node(position, world);
     if(consumer != null){
-      consumer.accept(from != null ? new Node(from) : null, new Node(position, world), world);
+      consumer.accept(from != null ? new Node(from) : null, node, world);
     }
-    final BlockEntity tile = world.getBlockEntity(position);
-    if(tile != null){
-      final BlockEntityNode node = new BlockEntityNode<>(tile);
-      if(isValid.test(from, node)){
-        list.add(node);
-        return node;
+    if(node.hasTileEntity()){
+      final BlockEntityNode block_node = node.toBlockEntityNode();
+      if(isValid.test(from, block_node)){
+        list.add(block_node);
+        return block_node;
       }
     }
     return null;

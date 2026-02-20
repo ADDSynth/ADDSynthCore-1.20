@@ -21,4 +21,11 @@ public class Node extends AbstractNode<BlockEntity> {
     super(position, world.getBlockState(position).getBlock(), world.getBlockEntity(position));
   }
 
+  public final BlockEntityNode<BlockEntity> toBlockEntityNode(){
+    if(tile != null){
+      return new BlockEntityNode<BlockEntity>(position, block, tile);
+    }
+    throw new NullPointerException("Cannot convert Node to BlockEntityNode because the BlockEntity is null! Use node.hasTileEntity() to check.");
+  }
+
 }
