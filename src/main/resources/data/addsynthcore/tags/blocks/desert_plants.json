@@ -1,0 +1,11 @@
+{
+  "values": [
+    "minecraft:dead_bush",
+    {"id": "biomesoplenty:wilted_lily",  "required": false},
+    {"id": "biomesoplenty:dune_grass",   "required": false},
+    {"id": "biomesoplenty:desert_grass", "required": false},
+    {"id": "biomesoplenty:dead_grass",   "required": false},
+    {"id": "biomesoplenty:tiny_cactus",  "required": false},
+    {"id": "biomesoplenty:dead_branch",  "required": false}
+  ]
+}

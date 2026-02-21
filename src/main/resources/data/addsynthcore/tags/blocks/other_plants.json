@@ -1,0 +1,24 @@
+{
+  "values": [
+    "minecraft:sweet_berry_bush",
+    "minecraft:bamboo",
+    "minecraft:bamboo_sapling",
+    "minecraft:vine",
+    {
+      "id": "biomesoplenty:sea_oats",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:barley",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:willow_vine",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:spanish_moss",
+      "required": false
+    }
+  ]
+}

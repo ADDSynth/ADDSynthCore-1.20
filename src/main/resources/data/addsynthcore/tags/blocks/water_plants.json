@@ -1,0 +1,22 @@
+{
+  "values": [
+    "minecraft:sugar_cane",
+    "minecraft:lily_pad",
+    {
+      "id": "biomesoplenty:huge_lily_pad",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:waterlily",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:cattail",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:reed",
+      "required": false
+    }
+  ]
+}

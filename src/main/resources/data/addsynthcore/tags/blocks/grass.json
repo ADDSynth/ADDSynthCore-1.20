@@ -4,6 +4,17 @@
     "minecraft:tall_grass",
     "minecraft:fern",
     "minecraft:large_fern",
-    "minecraft:dead_bush"
+    {
+      "id": "biomesoplenty:sprout",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:bush",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:high_grass",
+      "required": false
+    }
   ]
 }

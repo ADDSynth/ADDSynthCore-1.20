@@ -1,24 +1,18 @@
 {
   "values": [
-    "#minecraft:saplings",
-    "minecraft:brown_mushroom",
-    "minecraft:red_mushroom",
-    "#minecraft:small_flowers",
-    "#addsynthcore:tall_flowers",
-    "minecraft:pink_petals",
-    "minecraft:sweet_berry_bush",
     "#addsynthcore:grass",
+    "#addsynthcore:leaf_litter",
+    "#minecraft:saplings",
+    "#addsynthcore:mushrooms",
+    "#minecraft:small_flowers",
+    "#minecraft:tall_flowers",
+    "#addsynthcore:desert_plants",
     "#addsynthcore:nether_plants",
-    "minecraft:sugar_cane",
-    "minecraft:bamboo",
-    "minecraft:bamboo_sapling",
-    "minecraft:small_dripleaf",
-    "minecraft:big_dripleaf",
-    "minecraft:big_dripleaf_stem",
     "#addsynthcore:sea_plants",
     "#addsynthcore:cave_plants",
-    "minecraft:lily_pad",
-    "minecraft:chorus_plant",
-    "minecraft:chorus_flower"
+    "#addsynthcore:water_plants",
+    "#addsynthcore:end_plants",
+    "#addsynthcore:biomesoplenty_nether",
+    "#addsynthcore:other_plants"
   ]
 }

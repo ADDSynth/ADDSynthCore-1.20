@@ -1,0 +1,16 @@
+{
+  "values": [
+    {"id": "biomesoplenty:flesh_tendons",          "required": false},
+    {"id": "biomesoplenty:eyebulb",                "required": false},
+    {"id": "biomesoplenty:hair",                   "required": false},
+    {"id": "biomesoplenty:pus_bubble",             "required": false},
+    {"id": "biomesoplenty:brimstone_cluster",      "required": false},
+    {"id": "biomesoplenty:brimstone_bud",          "required": false},
+    {"id": "biomesoplenty:blackstone_spines",      "required": false},
+    {"id": "biomesoplenty:blackstone_bulb",        "required": false},
+    {"id": "biomesoplenty:rose_quartz_cluster",    "required": false},
+    {"id": "biomesoplenty:large_rose_quartz_bud",  "required": false},
+    {"id": "biomesoplenty:medium_rose_quartz_bud", "required": false},
+    {"id": "biomesoplenty:small_rose_quartz_bud",  "required": false}
+  ]
+}

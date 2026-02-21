@@ -1,0 +1,12 @@
+{
+  "values": [
+    "minecraft:pink_petals",
+    {"id": "biomesoplenty:wildflower",             "required": false},
+    {"id": "biomesoplenty:white_petals",           "required": false},
+    {"id": "biomesoplenty:red_maple_leaf_pile",    "required": false},
+    {"id": "biomesoplenty:orange_maple_leaf_pile", "required": false},
+    {"id": "biomesoplenty:yellow_maple_leaf_pile", "required": false},
+    {"id": "biomesoplenty:clover",                 "required": false},
+    {"id": "biomesoplenty:huge_clover_petal",      "required": false}
+  ]
+}

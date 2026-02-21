@@ -1,0 +1,14 @@
+{
+  "values": [
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom",
+    {
+      "id": "biomesoplenty:toadstool",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:glowshroom",
+      "required": false
+    }
+  ]
+}
