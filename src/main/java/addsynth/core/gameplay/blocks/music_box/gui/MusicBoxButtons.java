@@ -45,7 +45,7 @@ public final class MusicBoxButtons {
   }
 
   public static final Button getNextDirectionButton(int x, int y, int width, TileMusicBox tile){
-    return Button.builder(Component.empty(), (Button button) -> {
+    return Button.builder(tile.getNextDirectionText(), (Button button) -> {
       NetworkHandler.INSTANCE.sendToServer(new MusicBoxMessage(tile.getBlockPos(), TileMusicBox.Command.CYCLE_NEXT_DIRECTION));
     }).bounds(x, y, width, 14).build();
   }

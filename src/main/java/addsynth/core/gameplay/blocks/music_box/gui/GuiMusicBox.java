@@ -5,7 +5,6 @@ import addsynth.core.gameplay.NetworkHandler;
 import addsynth.core.gameplay.blocks.music_box.TileMusicBox;
 import addsynth.core.gameplay.blocks.music_box.data.MusicGrid;
 import addsynth.core.gameplay.blocks.music_box.network_messages.MusicBoxMessage;
-import addsynth.core.gameplay.reference.ADDSynthCoreText;
 import addsynth.core.gameplay.reference.GuiReference;
 import addsynth.core.gui.GuiBase;
 import addsynth.core.gui.widgets.buttons.ButtonUtil;
@@ -173,7 +172,7 @@ public final class GuiMusicBox extends GuiBase {
 
   @Override
   public final void tick(){
-    next_direction_button.setMessage(ADDSynthCoreText.getDirection(tile.get_next_direction()));
+    next_direction_button.setMessage(tile.getNextDirectionText());
   }
 
   @Override

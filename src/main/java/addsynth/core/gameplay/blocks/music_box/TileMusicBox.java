@@ -2,6 +2,7 @@ package addsynth.core.gameplay.blocks.music_box;
 
 import addsynth.core.game.tiles.TileBase;
 import addsynth.core.gameplay.blocks.music_box.data.MusicGrid;
+import addsynth.core.gameplay.reference.ADDSynthCoreText;
 import addsynth.core.gameplay.registers.Tiles;
 import addsynth.core.util.game.MinecraftUtility;
 import addsynth.core.util.game.redstone.RedstoneDetector;
@@ -9,6 +10,7 @@ import addsynth.core.util.game.tileentity.ITickingTileEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -178,6 +180,10 @@ public final class TileMusicBox extends TileBase implements ITickingTileEntity {
 
   public final int get_next_direction(){
     return next_direction;
+  }
+
+  public final Component getNextDirectionText(){
+    return ADDSynthCoreText.getDirection(next_direction);
   }
 
   public final byte get_note(byte frame, byte track){
